@@ -1,0 +1,231 @@
+/*Global styles*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Rehl";
+  src: url(./Fonts/FrankRuhlLibre-Regular.ttf);
+}
+@font-face {
+  font-family: "Rehl-medium";
+  src: url(./Fonts/FrankRuhlLibre-Medium.ttf);
+}
+@font-face {
+  font-family: "Vibes";
+  src: url(./Fonts/GreatVibes-Regular.ttf);
+}
+html {
+  font-size: 62.5%;
+  --header1: calc(2rem + 1vw);
+  --header2: calc(3.8rem + 1vw);
+  --header3: calc(3rem + 1vw);
+  --header4: calc(2.5rem + 1vw);
+  --normal-text: calc(1.1rem + 1vw);
+  --speacial-color: #906272;
+  --main-color: #414141;
+  --text-color: #525252;
+}
+h1 {
+  font-size: var(--header1);
+}
+h2 {
+  font-size: var(--header2);
+}
+h3 {
+  font-size: var(--header3);
+}
+h4,
+h5 {
+  font-size: var(--header4);
+}
+p,
+input,
+label,
+a {
+  font-size: var(--normal-text);
+}
+ul {
+  list-style: none;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+h1 {
+  font-family: "Vibes";
+}
+body {
+  animation: opening 1s ease-in-out;
+}
+
+/*Nav Section*/
+.main-head {
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  position: relative;
+}
+nav {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  min-height: 10vh;
+  padding: 2rem 0;
+}
+nav h1 {
+  flex: 1 1 30rem;
+}
+.list-item {
+  display: flex;
+  justify-content: space-around;
+  flex: 1 1 30rem;
+}
+
+/*Hero Section*/
+.hero-page {
+  min-height: 90vh;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.hero-intro {
+  flex: 2 1 40rem;
+  text-align: center;
+}
+.hero-intro p {
+  padding: 3rem;
+}
+.hero-intro h2 {
+  padding-top: 3rem;
+}
+.hero-intro a {
+  padding: 2rem 8rem;
+  border: solid 3px black;
+  margin-bottom: 1rem;
+}
+.hero-images {
+  flex: 1 1 40rem;
+  background: linear-gradient(#dad8dd, #dad1d4);
+  z-index: -2;
+  position: relative;
+}
+.hero-elena {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.plant {
+  position: absolute;
+  bottom: 0rem;
+  left: -20%;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  transform: translateY(10%) rotateZ(-10deg) rotateX(-90deg);
+  animation: plant-animation 1.5s ease-in-out 0.5s forwards,
+    plant-shake 2.5s infinite alternate-reverse 2s;
+  transform-origin: bottom;
+}
+.plant2 {
+  left: 40%;
+}
+
+/*AnIMATION*/
+
+@keyframes opening {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes plant-animation {
+  from {
+    transform: translateY(10%) rotateZ(-10deg) rotateX(-90deg);
+  }
+  to {
+    transform: translateY(0%) rotateZ(0deg) rotateX(0deg);
+  }
+}
+@keyframes plant-shake {
+  from {
+    transform: rotateZ(-5deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+.burger,.menu-check{
+  display: none;
+}
+/*MObile media quary*/
+@media screen and (max-width: 889px) {
+  .burger {
+    position: relative;
+    display: block;
+  }
+  .burger span {
+    padding: 0.2rem 2rem;
+    background: var(--text-color);
+    display: block;
+    margin: 0.5rem 0.2rem;
+    transition: all 0.3s ease;
+  }
+  .list-item a {
+    color: white;
+    font-size: var(--header1);
+    text-decoration: underline;
+  }
+  .list-item {
+    background: var(--text-color);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 100%;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 1s ease;
+  }
+  .menu-check {
+    display: block;
+    z-index: 100;
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translate(5%, -50%);
+    height: 5rem;
+    width: 5rem;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .menu-check:checked + .list-item {
+    transform: translate(-100%);
+  }
+  .menu-check:checked ~ .burger span {
+    background: white;
+  }
+  .menu-check:checked ~ .burger span:nth-child(1) {
+    transform: rotatez(45deg) translateY(300%) ;
+  }
+  .menu-check:checked ~ .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-check:checked ~ .burger span:nth-child(3) {
+    transform: rotatez(-45deg) translateY(-300%) ;
+  }
+}
